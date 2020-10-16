@@ -13,29 +13,55 @@ CKnave = Symbol("C is a Knave")
 # A says "I am both a knight and a knave."
 
 knowledge0 = And(
-    And(AKnight, AKnave),
-    
-
-
-)
-
+    Or(AKnight, AKnave),
+    Implication(AKnight, And(AKnave, AKnight
+)))
 
 # Puzzle 1
 # A says "We are both knaves."
 # B says nothing.
-knowledge1 = And(And(BKnight, BKnave), BKnight)
+knowledge1 = And(
+    # Info from structure of problem
+    Or(AKnight, AKnave),               
+    Implication(AKnight, Not(AKnave)),  
+    Or(BKnight, BKnave),                
+    Implication(BKnight, Not(BKnave)),
+    # Info from give statements
+    Biconditional(AKnight, And(AKnave, BKnave))
+)
 
 # Puzzle 2
 # A says "We are the same kind."
 # B says "We are of different kinds."
-knowledge2 = And(And(BKnight, BKnave), Not(BKnight, BKnave))
+knowledge2 = And(
+    # intro for stucture of the problem
+    Or(AKnight, AKnave),
+    Or(BKnight, BKnave),
+    Implication(AKnight, Not(AKnave)),
+    Implication(BKnight, Not(BKnave)),
+    # statement
+    Biconditional(AKnight, Or(And(AKnight, BKnight), And(AKnave, BKnave))),
+    Biconditional(BKnight, Or(And(AKnight, BKnave), And(AKnave, BKnight)))
+
+)
 
 # Puzzle 3
 # A says either "I am a knight." or "I am a knave.", but you don't know which.
 # B says "A said 'I am a knave'."
 # B says "C is a knave."
 # C says "A is a knight."
-knowledge3 = And(Or(CKnight, CKnave), CKnave, CKnight)
+knowledge3 = And(
+    # structure
+    Or(AKnight, AKnave),
+    Implication(AKnight, Not(AKnave)),
+    Or(BKnight, BKnave),
+    Implication(BKnight, Not(BKnave)),
+    Or(CKnight, CKnave),
+    Implication(CKnight, Not(CKnave)),
+    # statement
+    Biconditional(Or(AKnight, AKnave), Or(AKnave, AKnight)
+
+)
 
 
 def main():
