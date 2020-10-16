@@ -59,10 +59,12 @@ knowledge3 = And(
     Or(CKnight, CKnave),
     Implication(CKnight, Not(CKnave)),
     # statement
-    Biconditional(Or(AKnight, AKnave), Or(AKnave, AKnight)
+    Biconditional(Or(AKnight, AKnave), Or(AKnave, AKnight)),
+    Biconditional(BKnight, Biconditional(AKnight, AKnave)),
+    Biconditional(BKnight, CKnave),
+    Biconditional(CKnight, AKnight)
 
 )
-
 
 def main():
     symbols = [AKnight, AKnave, BKnight, BKnave, CKnight, CKnave]
