@@ -181,10 +181,30 @@ class MinesweeperAI():
             5) add any new sentences to the AI's knowledge base
                if they can be inferred from existing knowledge
         """
+        # mark the cell as a move that has been made
         self.moves_made.add(cell)
+        # mark the cell as safe
         self.mark_safe(cell)
+        # create new centence with list of neighboing cells
+        sent_new = Sentence(self.neighboring_cell(cell), count)
+        # check all the cells in new sentence if they are 
 
-        
+
+    def neighboring_cell(self, cell):
+        '''func to find all the neighboring cells'''
+        neighbors = set()
+        # loop over all the sells
+        for i in range(cell[0]-1, cell[0]+2):
+            for j in range(cell[1]-1, cell[1]+2):
+
+                # we don't need the cell itself
+                if (i, j) == cell:
+                    continue
+                # add neightbor
+                if 0 <= i < self.width and 0 <= j < self.height:
+                    neighbors.add((i, j))
+        return neighbors
+        # https://github.com/nahueespinosa/ai50/blob/master/minesweeper/minesweeper.py
 
 
     def make_safe_move(self):
