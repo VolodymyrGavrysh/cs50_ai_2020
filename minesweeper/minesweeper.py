@@ -183,8 +183,9 @@ class MinesweeperAI():
         """
         self.moves_made.add(cell)
         self.mark_safe(cell)
+        pass
 
-        
+
 
 
     def make_safe_move(self):
