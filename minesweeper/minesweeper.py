@@ -115,7 +115,7 @@ class Sentence():
         Updates internal knowledge representation given the fact that
         a cell is known to be a mine.
         """
-        if cell in self.known_mines():
+        if cell in self.cells:
             self.cells.remove(cell)
             self.count -= 1
     
@@ -124,7 +124,7 @@ class Sentence():
         Updates internal knowledge representation given the fact that
         a cell is known to be safe.
         """
-        if cell in self.known_safes():
+        if cell in self.cells:
             self.cells.remove(cell)
 
     def inference(self, new):
@@ -197,7 +197,7 @@ class MinesweeperAI():
         for i in self.mines:
             sent_new.mark_mine(i)
         # check all cells in new sentenve if they are safe
-        for i in self.mines:
+        for i in self.safes:
             sent_new.mark_safe(i)
         # add knowledge to the knowledge base
         self.knowledge.append(sent_new)
@@ -269,7 +269,7 @@ class MinesweeperAI():
             1) have not already been chosen, and
             2) are not known to be mines
         """
-        moves_left = set([(x, y) for x in self.width for y in self.height])
+        moves_left = set(product(range(0, self.width), range(0, self.height)))
         moves_left = moves_left - self.mines - self.moves_made
 
         if moves_left:
