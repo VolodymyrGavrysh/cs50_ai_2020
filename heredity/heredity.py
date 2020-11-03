@@ -179,8 +179,8 @@ def joint_probability(people, one_gene, two_genes, have_trait):
                 proba *= proba_inheritance(father_number_genes, False) * proba_inheritance(mother_number_genes, False)
 
             elif num_genes_of_person == 1:
-                proba *= proba_inheritance(father_number_genes, False) * proba_inheritance(mother_number_genes, True) \
-                    + proba_inheritance(father_number_genes, True) * proba_inheritance(mother_number_genes, False)
+                proba *= proba_inheritance(father_number_genes, True) * proba_inheritance(mother_number_genes, False) \
+                    + proba_inheritance(father_number_genes, False) * proba_inheritance(mother_number_genes, True)
 
             elif num_genes_of_person == 2:
                 proba *= proba_inheritance(father_number_genes, True) * proba_inheritance(mother_number_genes, True)
@@ -212,8 +212,8 @@ def normalize(probabilities):
     is normalized (i.e., sums to 1, with relative proportions the same).
     """
     for name in probabilities:
-        gene_sum = sum(probabilities[name]['gene'])
-        trait_sum = sum(probabilities[name]['trait'])
+        gene_sum = sum(probabilities[name]['gene'].values())
+        trait_sum = sum(probabilities[name]['trait'].values())
 
         for value in probabilities[name]['gene']:
             probabilities[name]['gene'][value] /= gene_sum
