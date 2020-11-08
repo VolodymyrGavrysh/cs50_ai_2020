@@ -98,7 +98,8 @@ class CrosswordCreator():
         (Remove any values that are inconsistent with a variable's unary
          constraints; in this case, the length of the word.)
         """
-        raise NotImplementedError
+        pass
+
 
     def revise(self, x, y):
         """
@@ -181,15 +182,16 @@ def main():
     # Generate crossword
     crossword = Crossword(structure, words)
     creator = CrosswordCreator(crossword)
-    assignment = creator.solve()
+    print(creator.crossword)
+    # assignment = creator.solve()
 
-    # Print result
-    if assignment is None:
-        print("No solution.")
-    else:
-        creator.print(assignment)
-        if output:
-            creator.save(assignment, output)
+    # # Print result
+    # if assignment is None:
+    #     print("No solution.")
+    # else:
+    #     creator.print(assignment)
+    #     if output:
+    #         creator.save(assignment, output)
 
 
 if __name__ == "__main__":
