@@ -6,4 +6,4 @@ https://cs50.harvard.edu/ai/2020/
 
 started 01/10/2020 
 
-ended 
+ended   12/12/2020
